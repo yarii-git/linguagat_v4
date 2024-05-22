@@ -3,6 +3,7 @@ import { md3 } from 'vuetify/blueprints'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { VBtn } from 'vuetify/components/VBtn'
+import '@mdi/font/css/materialdesignicons.css'
 
 const lightTheme = {
   dark: false,
@@ -34,11 +35,12 @@ const vuetify = createVuetify({
   },
   aliases: {
     TextBtn: VBtn,
+    PrintBtn: VBtn,
     VBtnDark: VBtn,
     VBtnDark: VBtn
   },
   defaults: {
-    VBtn: {
+    PrintBtn: {
       color: 'background',
       variant: 'outlined',
       rounded: 'circle',

@@ -8,11 +8,11 @@ const changeImage = (newSrc) => {
 };
 </script>
 <template>
-    <v-btn>
+    <PrintBtn>
         <v-img :src="imageSrc" width="100" cover
             @mouseover="changeImage('http://linguagat.inscastellet.cat/assets/eselected.png')"
             @mouseleave="changeImage('http://linguagat.inscastellet.cat/assets/egreen.png')">
         </v-img>
-    </v-btn>
+    </PrintBtn>
 </template>
 <style scoped></style>
