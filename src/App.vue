@@ -3,7 +3,9 @@ import HomeView from '@/views/HomeView.vue';
 </script>
 
 <template>
-  <HomeView></HomeView>
+  <v-app>
+    <RouterView></RouterView>
+  </v-app>
 </template>
 
 <style scoped></style>
