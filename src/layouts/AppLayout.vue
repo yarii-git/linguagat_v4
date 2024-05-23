@@ -6,10 +6,7 @@ import ToolbarComponent from '@/components/ToolbarComponent.vue';
     <ToolbarComponent />
 
     <v-main>
-        <v-container class="vpage-wrapper pb-sm-15 pb-10 ma-top">
-            <slot></slot>
-
-        </v-container>
+        <slot></slot>
     </v-main>
 </template>
 

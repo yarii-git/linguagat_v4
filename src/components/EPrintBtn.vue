@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const imageSrc = ref('http://linguagat.inscastellet.cat/assets/dgreen.png');
+const imageSrc = ref('http://linguagat.inscastellet.cat/assets/egreen.png');
 
 const changeImage = (newSrc) => {
     imageSrc.value = newSrc;
