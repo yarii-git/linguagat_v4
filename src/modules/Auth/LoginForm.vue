@@ -45,17 +45,17 @@ const props = defineProps({
 <template>
     <div>
         <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-            <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
+            <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
-            <v-text-field density="compact" placeholder="Email" prepend-inner-icon="mdi-email-outline"
+            <v-text-field density="compact" placeholder="Email address" prepend-inner-icon="mdi-email-outline"
                 variant="outlined" v-model="email"></v-text-field>
 
             <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-                Contraseña
+                Password
 
-                <a class="text-caption text-decoration-none text-blue ml-2" href="#" rel="noopener noreferrer"
+                <a class="text-caption text-decoration-none text-secondary ml-2" href="#" rel="noopener noreferrer"
                     target="_blank">
-                    ¿Olvidaste la contraseña?
+                    Forgot login password?
                 </a>
             </div>
 
@@ -69,9 +69,16 @@ const props = defineProps({
                 </v-card-text>
             </v-card>
 
-            <v-btn type="submit" size="large" block @click="loginUser">
+            <VBtnLight type="submit" size="large" block @click="loginUser">
                 Log In
-            </v-btn>
+            </VBtnLight>
+
+            <v-card-text class="text-center">
+                <!-- target="_blank" para abrir en otra pestaña -->
+                <a class="text-info text-decoration-none" href="/signup" rel="noopener noreferrer">
+                    Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
+                </a>
+            </v-card-text>
         </v-card>
     </div>
 </template>

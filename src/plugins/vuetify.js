@@ -36,7 +36,7 @@ const vuetify = createVuetify({
   aliases: {
     TextBtn: VBtn,
     PrintBtn: VBtn,
-    VBtnDark: VBtn,
+    VBtnLight: VBtn,
     VBtnDark: VBtn
   },
   defaults: {
@@ -47,14 +47,16 @@ const vuetify = createVuetify({
       height: '130'
     },
     VBtnLight: {
-      color: 'secondary',
-      variant: 'flat',
-      rounded: 'xl'
-    },
-    VBtnDark: {
       color: 'primary',
       variant: 'flat',
-      rounded: 'xl'
+      rounded: 'xl',
+      width: '150'
+    },
+    VBtnDark: {
+      color: 'secondary',
+      variant: 'flat',
+      rounded: 'xl',
+      width: '150'
     },
     TextBtn: {
       color: 'info',

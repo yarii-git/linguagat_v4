@@ -1,7 +1,7 @@
 <script setup>
 </script>
 <template>
-  <v-toolbar>
+  <v-toolbar color="primary">
     <v-toolbar-title>
       <v-img max-height="100" max-width="200" aspect-ratio="16/9"
         src="http://linguagat.inscastellet.cat/assets/capcelera1.png"></v-img>

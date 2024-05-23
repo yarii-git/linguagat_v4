@@ -1,10 +1,9 @@
 <script setup>
-import ToolbarComponent from '@/common/ToolbarComponent.vue';
-import BottomNavComponent from '@/common/BottomNavComponent.vue';
+import ToolbarComponent from '@/components/ToolbarComponent.vue';
 </script>
 
 <template>
-    <ToolbarComponent/>
+    <ToolbarComponent />
 
     <v-main>
         <v-container class="vpage-wrapper pb-sm-15 pb-10 ma-top">
@@ -12,12 +11,10 @@ import BottomNavComponent from '@/common/BottomNavComponent.vue';
 
         </v-container>
     </v-main>
-
-    <BottomNavComponent/>
 </template>
 
 <style scoped>
-.ma-top{
+.ma-top {
     margin-top: 60px;
 }
 </style>
