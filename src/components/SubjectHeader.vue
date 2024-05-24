@@ -1,8 +1,8 @@
 <script setup>
 const props = defineProps({
     title: {
-        type: String,
-        default: 'Theme',
+        type: Number,
+        default: 'Subject',
     },
     subtitle: {
         type: String,
@@ -17,7 +17,7 @@ const props = defineProps({
 //TODO Implementar lógica para crear tema y para ver la teoria
 </script>
 <template>
-    <v-card variant="flat" color="primary" class="ma-3">
+    <v-card variant="flat" color="secondary" class="ma-3 mb-0" rounded="t-lg">
         <v-row align="center">
             <v-col cols="9">
                 <v-card-item>
@@ -27,8 +27,8 @@ const props = defineProps({
             </v-col>
             <v-col cols="3">
                 <v-card-actions class="d-flex justify-end">
-                    <v-btn icon="mdi-notebook" color="background" elevation="4" class="bg-secondary mr-4"> </v-btn>
-                    <v-btn icon="mdi-plus" color="background" elevation="4" class="bg-secondary mr-4"> </v-btn>
+                    <v-btn icon="mdi-notebook" color="background" elevation="4" class="bg-info mr-4"> </v-btn>
+                    <v-btn icon="mdi-plus" color="background" elevation="4" class="bg-info mr-4"> </v-btn>
                 </v-card-actions>
             </v-col>
         </v-row>

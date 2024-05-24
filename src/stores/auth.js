@@ -3,10 +3,12 @@ import axios from 'axios'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
+    base: 'http://192.168.1.69:5000/usuarios/',
+    email: null,
     role: null,
     error: null,
     resStore: null,
-    base: 'http://192.168.1.69:5000/usuarios/'
+    user: []
   }),
   getters: {},
   actions: {
@@ -39,12 +41,7 @@ export const useAuthStore = defineStore('auth', {
     async createUser(user) {
       try {
         const url = `${this.base}register`
-        const res = await axios.post(url, {
-          email: user.email,
-          password: user.password,
-          nombre: user.name,
-          apellidos: user.lastname
-        })
+        const res = await axios.post(url, { email: email })
 
         const response = res.data
 
@@ -57,6 +54,25 @@ export const useAuthStore = defineStore('auth', {
       } catch (error) {
         console.error('Register request error:', error)
         this.error = 'Register failed'
+        return false
+      }
+    },
+    async getUser(email) {
+      try {
+        const url = `${this.base}register`
+        const res = await axios.get(url, { email: email })
+
+        const response = res.data
+
+        if (response.message) {
+          this.user = response
+          return true
+        } else {
+          throw new Error('Invalid response')
+        }
+      } catch (error) {
+        console.error('Get user request error:', error)
+        this.error = 'Get user failed'
         return false
       }
     }

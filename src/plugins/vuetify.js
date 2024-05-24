@@ -9,15 +9,26 @@ const lightTheme = {
   dark: false,
   colors: {
     background: '#FFFFFF',
-    surface: '#FFFFFF',
-    primary: '#FCD9E9',
-    secondary: '#F800C0',
+    surface: '#FFF8F8',
+    primary: '#FAB1DA',
+    secondary: '#DEBECD',
     secondaryLight: '#FFF8F8',
-    error: '#B00020',
-    info: '#341100',
-    success: '#77bc1f',
+    error: '#93000A',
+    info: '#4B2713',
+    success: '#A2D398',
     warning: '#fe7314'
   }
+  // colors: {
+  //   background: '#FFFFFF',
+  //   surface: '#FFFFFF',
+  //   primary: '#FCD9E9',
+  //   secondary: '#F800C0',
+  //   secondaryLight: '#FFF8F8',
+  //   error: '#B00020',
+  //   info: '#341100',
+  //   success: '#77bc1f',
+  //   warning: '#fe7314'
+  // }
 }
 
 const vuetify = createVuetify({

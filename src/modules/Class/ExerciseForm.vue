@@ -1,8 +1,5 @@
 <script setup>
 import ExerciseCard from '../../components/ExerciseCard.vue';
-
-
-
 </script>
 <template>
     <v-container>
