@@ -20,10 +20,10 @@ const loginUser = async () => {
             case 3:
                 router.push({ name: 'home' });
                 break;
-            // case "1":
-            //     console.log("ruta 1");
-            //     router.push({ name: 'home' });
-            //     break;
+            case 1:
+                console.log("ruta 1");
+                router.push({ name: 'home' });
+                break;
             default:
                 router.push({ name: 'login' });
                 break;

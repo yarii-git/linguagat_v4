@@ -35,7 +35,7 @@ export const useLessonsStore = defineStore('lessons', {
     async createLesson(cod_tema, nombre) {
       try {
         const url = `${this.base}crear-leccion`
-        const cod_leccion = cod_tema
+        const cod_leccion = '1'
         const res = await axios.post(url, { cod_tema, cod_leccion, nombre })
 
         if (res.status !== 200) {

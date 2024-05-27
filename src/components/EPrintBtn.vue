@@ -7,8 +7,8 @@ const props = defineProps({
         type: String,
         default: 'Lesson',
     },
-    cod_tema: {
-        type: String
+    cod_leccion: {
+        type: Number
     }
 })
 
@@ -24,7 +24,7 @@ const changeImage = (newSrc) => {
             @mouseover="changeImage('http://linguagat.inscastellet.cat/assets/eselected.png')"
             @mouseleave="changeImage('http://linguagat.inscastellet.cat/assets/egreen.png')">
         </v-img>
-        <LessonMenu :cod_tema="props.cod_tema"></LessonMenu>
+        <LessonMenu :nombre="props.nombre" :cod_leccion="props.cod_leccion"></LessonMenu>
     </PrintBtn>
 </template>
 <style scoped></style>

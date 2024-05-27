@@ -2,7 +2,6 @@
 const props = defineProps({
     title: {
         type: Number,
-        default: 'Subject',
     },
     subtitle: {
         type: String,
@@ -14,7 +13,7 @@ const props = defineProps({
     }
 })
 
-//TODO Implementar lógica para crear tema y para ver la teoria
+//TODO Implementar lógica para ver la teoria
 </script>
 <template>
     <v-card variant="flat" color="secondary" class="ma-3 mb-0" rounded="t-lg">
@@ -28,7 +27,22 @@ const props = defineProps({
             <v-col cols="3">
                 <v-card-actions class="d-flex justify-end">
                     <v-btn icon="mdi-notebook" color="background" elevation="4" class="bg-info mr-4"> </v-btn>
-                    <v-btn icon="mdi-plus" color="background" elevation="4" class="bg-info mr-4"> </v-btn>
+
+                    <v-menu location="bottom left" transition="fade-transition">
+                        <template v-slot:activator="{ props }">
+                            <v-btn v-bind="props" icon="mdi-plus" color="background" elevation="4" class="bg-info mr-4">
+                            </v-btn>
+                        </template>
+
+                        <v-list>
+                            <v-list-item>
+                                <TextBtn>New subject</TextBtn>
+                            </v-list-item>
+                            <v-list-item>
+                                <TextBtn>New lesson</TextBtn>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
                 </v-card-actions>
             </v-col>
         </v-row>

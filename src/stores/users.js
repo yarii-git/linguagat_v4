@@ -4,7 +4,7 @@ import axios from 'axios'
 export const useUsersStore = defineStore('users', {
   state: () => ({
     base: 'http://192.168.1.99:5000/Usuarios/',
-    users: []
+    user: []
   }),
   getters: {},
   actions: {

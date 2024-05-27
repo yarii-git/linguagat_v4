@@ -5,9 +5,8 @@ import DPrintBtn from '../components/DPrintBtn.vue'
 //import DPrintAct from '../components/DPrintAct.vue'
 import { useLessonsStore } from '../stores/lessons'
 const props = defineProps({
-    sub: {
-        type: String,
-        default: 1,
+    cod_tema: {
+        type: Number,
     }
 })
 
@@ -18,7 +17,7 @@ const lessonsStore = useLessonsStore()
 // ])
 const lessons = ref([])
 const loadLessons = async () => {
-    const success = await lessonsStore.obtainLessons(props.sub)
+    const success = await lessonsStore.obtainLessons(props.cod_tema)
     if (success) {
         lessons.value = lessonsStore.lessons
     }
@@ -39,7 +38,7 @@ onMounted(() => {
                     <!-- Left button for odd lessons -->
                     <template v-if="lesson.cod_leccion % 2 !== 0">
                         <v-col cols="7" class="d-flex justify-end align-center">
-                            <EPrintBtn :nombre="lesson.nombre" :cod_tema="props.sub">
+                            <EPrintBtn :nombre="lesson.nombre" :cod_leccion="lesson.cod_leccion">
                             </EPrintBtn>
                         </v-col>
                         <v-col cols="5">
@@ -53,7 +52,7 @@ onMounted(() => {
                             <!-- Empty space left of the right button -->
                         </v-col>
                         <v-col cols="7" class="d-flex align-center">
-                            <DPrintBtn :nombre="lesson.nombre" :cod_tema="props.sub">
+                            <DPrintBtn :nombre="lesson.nombre" :cod_leccion="lesson.cod_leccion">
                             </DPrintBtn>
                         </v-col>
                     </template>

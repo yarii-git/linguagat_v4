@@ -18,6 +18,7 @@ const loadLevels = async () => {
     }
 }
 
+//Default level
 const select = ref({ cod_nivel: '1', nombre: 'A1' })
 
 // Estado y lógica de asignaturas
@@ -58,13 +59,10 @@ onMounted(() => {
             variant="plain" item-color="info" rounded="0">
         </v-select>
 
-        <!-- Mostrar el componente para crear un nivel si se selecciona "Crear nivel" -->
-        <!-- <CreateLevelComponent v-if="select.state === 'Crear nivel'" /> -->
-
         <!-- Renderizar la lista de asignaturas -->
         <div v-for="subject in subjects" :key="subject.cod_nivel">
             <SubjectHeader :title="subject.cod_tema" :subtitle="subject.nombre" />
-            <LessonList :sub="subject.cod_tema" />
+            <LessonList :cod_tema="subject.cod_tema" />
         </div>
     </div>
 </template>

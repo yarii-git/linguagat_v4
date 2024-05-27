@@ -32,9 +32,10 @@ export const useSubjectsStore = defineStore('subjects', {
         return false
       }
     },
-    async createLevel(cod_tema, cod_nivel, nombre) {
+    async createSubject(cod_tema, nombre) {
       try {
         const url = `${this.base}crear-tema`
+        const cod_nivel = '1'
         const res = await axios.post(url, { cod_tema, cod_nivel, nombre })
 
         if (res.status !== 200) {

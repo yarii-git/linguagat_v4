@@ -25,6 +25,14 @@ export const useAuthStore = defineStore('auth', {
 
         if (response.rol) {
           this.role = response.rol
+          this.email = response.email
+          console.log(this.email)
+
+          // Get user data
+          const userData = await this.getUser()
+          if (!userData) {
+            throw new Error('Failed to get user')
+          }
           return true
         } else {
           throw new Error('Invalid response')
@@ -57,19 +65,17 @@ export const useAuthStore = defineStore('auth', {
         return false
       }
     },
-    async getUser(email) {
+    async getUser() {
       try {
-        const url = `${this.base}register`
-        const res = await axios.get(url, { email: email })
+        const url = `${this.base}datos-usuario`
+        const res = await axios.post(url, { email: this.email })
 
-        const response = res.data
-
-        if (response.message) {
-          this.user = response
-          return true
-        } else {
-          throw new Error('Invalid response')
+        if (res.status !== 200) {
+          throw new Error('Failed to get user')
         }
+
+        this.user = res.data
+        return true
       } catch (error) {
         console.error('Get user request error:', error)
         this.error = 'Get user failed'
