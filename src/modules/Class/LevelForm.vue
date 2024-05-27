@@ -8,6 +8,7 @@ import LessonList from '../../components/LessonList.vue'
 // Estado y lógica de niveles
 const levelsStore = useLevelsStore()
 const levels = ref([])
+
 const user = levelsStore.user
 
 const loadLevels = async () => {
@@ -21,6 +22,7 @@ const select = ref({ cod_nivel: '1', nombre: 'A1' })
 
 // Estado y lógica de asignaturas
 const subjectsStore = useSubjectsStore()
+// let subjects = ref([{ cod_nivel: '1', cod_tema: '1', nombre: 'Hola' }])
 let subjects = ref([])
 
 const loadSubjects = async (level) => {

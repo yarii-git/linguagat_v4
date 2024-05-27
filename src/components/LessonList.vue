@@ -1,19 +1,22 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import EPrintAct from '../components/EPrintAct.vue'
-//import DPrintBtn from '../components/DPrintBtn.vue'
-import DPrintAct from '../components/DPrintAct.vue'
+import EPrintBtn from '../components/EPrintBtn.vue'
+import DPrintBtn from '../components/DPrintBtn.vue'
+//import DPrintAct from '../components/DPrintAct.vue'
 import { useLessonsStore } from '../stores/lessons'
 const props = defineProps({
     sub: {
-        type: Number,
+        type: String,
         default: 1,
     }
 })
 
 const lessonsStore = useLessonsStore()
+// const lessons = ref([
+//     { cod_leccion: 1, nombre: "Lección 1" },
+//     { cod_leccion: 2, nombre: "Lección 2" }
+// ])
 const lessons = ref([])
-
 const loadLessons = async () => {
     const success = await lessonsStore.obtainLessons(props.sub)
     if (success) {
@@ -24,6 +27,8 @@ const loadLessons = async () => {
 onMounted(() => {
     loadLessons()
 })
+
+
 </script>
 
 <template>
@@ -34,7 +39,8 @@ onMounted(() => {
                     <!-- Left button for odd lessons -->
                     <template v-if="lesson.cod_leccion % 2 !== 0">
                         <v-col cols="7" class="d-flex justify-end align-center">
-                            <EPrintAct :nombre="lesson.nombre"></EPrintAct>
+                            <EPrintBtn :nombre="lesson.nombre" :cod_tema="props.sub">
+                            </EPrintBtn>
                         </v-col>
                         <v-col cols="5">
                             <!-- Empty space to the right of left button -->
@@ -47,7 +53,8 @@ onMounted(() => {
                             <!-- Empty space left of the right button -->
                         </v-col>
                         <v-col cols="7" class="d-flex align-center">
-                            <DPrintAct :nombre="lesson.nombre"></DPrintAct>
+                            <DPrintBtn :nombre="lesson.nombre" :cod_tema="props.sub">
+                            </DPrintBtn>
                         </v-col>
                     </template>
                 </v-row>

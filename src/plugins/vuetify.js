@@ -7,6 +7,17 @@ import '@mdi/font/css/materialdesignicons.css'
 
 const lightTheme = {
   dark: false,
+  // colors: {
+  //   background: '#FFFFFF',
+  //   surface: '#FFF8F8',
+  //   primary: '#2C3E50',
+  //   secondary: '#2ECC71',
+  //   secondaryLight: '#F1C40F',
+  //   error: '#E74C3C',
+  //   info: '#34495E',
+  //   success: '#A2D398',
+  //   warning: '#E67E22'
+  // }
   colors: {
     background: '#FFFFFF',
     surface: '#FFF8F8',

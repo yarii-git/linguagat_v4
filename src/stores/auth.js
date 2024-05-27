@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    base: 'http://192.168.1.69:5000/usuarios/',
+    base: 'http://192.168.1.99:5000/usuarios/',
     email: null,
     role: null,
     error: null,
