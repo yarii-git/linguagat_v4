@@ -81,6 +81,7 @@ export const useAuthStore = defineStore('auth', {
         this.error = 'Get user failed'
         return false
       }
-    }
+    },
+    persist: true
   }
 })

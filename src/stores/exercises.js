@@ -44,7 +44,7 @@ export const useExercisesStore = defineStore('exercises', {
           await authStore.getUser(authStore.email)
         }
 
-        const rol = authStore.role
+        const rol = authStore.role.toString()
 
         // Verify if the role is retrieved correctly
         if (!rol) {
