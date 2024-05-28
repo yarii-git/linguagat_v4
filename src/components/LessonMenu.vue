@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import CreateExercise from '@/components/CreateExercise.vue';
+import router from '@/router';
 
 const props = defineProps({
     nombre: {
@@ -13,6 +14,11 @@ const props = defineProps({
 })
 
 const dialog = ref(false);
+
+const openLesson = () => {
+    console.log(props.cod_leccion)
+    router.push({ name: 'lesson', params: { id: props.cod_leccion } });
+}
 </script>
 
 <template>
@@ -23,7 +29,9 @@ const dialog = ref(false);
 
             <v-card-actions>
                 <!-- <v-icon>mdi-play</v-icon> -->
-                <TextBtn>Start</TextBtn>
+                <TextBtn @click="openLesson">Start</TextBtn>
+
+
                 <v-dialog v-model="dialog" max-width="600">
                     <template v-slot:activator="{ props: activatorProps }">
                         <v-btn icon="mdi-plus" color="background" elevation="4" class="bg-info" density="comfortable"

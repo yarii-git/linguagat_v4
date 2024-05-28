@@ -4,15 +4,15 @@ import { useAuthStore } from '@/stores/auth'
 
 export const useExercisesStore = defineStore('exercises', {
   state: () => ({
-    base: 'http://192.168.1.99:5000/ejercicios/',
-    subjects: []
+    base: 'http://127.0.0.1:5000/ejercicios/',
+    exercises: []
   }),
   getters: {},
   actions: {
-    async obtainExercises(cod_nivel) {
+    async obtainExercises(cod_leccion) {
       try {
         const url = `${this.base}generar-ejercicios-leccion`
-        const res = await axios.post(url, { cod_nivel })
+        const res = await axios.post(url, { cod_leccion })
 
         if (res.status !== 200) {
           throw new Error('Failed to obtain exercises')
@@ -21,7 +21,7 @@ export const useExercisesStore = defineStore('exercises', {
         const response = res.data
 
         if (Array.isArray(response)) {
-          this.subjects = response
+          this.exercises = response
           return true
         } else {
           throw new Error('Invalid response')

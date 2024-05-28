@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const useClassesStore = defineStore('auth', {
   state: () => ({
-    base: 'http://192.168.1.99:5000/clases/',
+    base: 'http://127.0.0.1:5000/clases/',
     classes: []
   }),
   getters: {},

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const useSubjectsStore = defineStore('subjects', {
   state: () => ({
-    base: 'http://192.168.1.99:5000/temas/',
+    base: 'http://127.0.0.1:5000/temas/',
     subjects: []
   }),
   getters: {},

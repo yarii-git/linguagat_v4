@@ -33,7 +33,7 @@ onMounted(() => {
 <template>
     <v-container class="bg-surface ">
         <v-row>
-            <v-col v-for="(lesson, index) in lessons" :key="lesson.cod_leccion" cols="12" class="pa-0">
+            <v-col v-for="(lesson) in lessons" :key="lesson.cod_leccion" cols="12" class="pa-0">
                 <v-row>
                     <!-- Left button for odd lessons -->
                     <template v-if="lesson.cod_leccion % 2 !== 0">
