@@ -1,4 +1,9 @@
 <script setup>
+import { ref } from 'vue';
+import CreateLesson from '@/components/CreateLesson.vue';
+import CreateSubject from '@/components/CreateSubject.vue';
+import Theory from '@/components/Theory.vue';
+
 const props = defineProps({
     title: {
         type: Number,
@@ -7,13 +12,15 @@ const props = defineProps({
         type: String,
         default: 'Subtitle',
     },
-    lesson: {
-        type: String,
-        default: '#',
+    cod_nivel: {
+        type: Number,
     }
 })
+const theoryDialog = ref(false);
+const dialog1 = ref(false);
+const dialog2 = ref(false);
 
-//TODO Implementar lógica para ver la teoria
+
 </script>
 <template>
     <v-card variant="flat" color="secondary" class="ma-3 mb-0" rounded="t-lg">
@@ -26,7 +33,16 @@ const props = defineProps({
             </v-col>
             <v-col cols="3">
                 <v-card-actions class="d-flex justify-end">
-                    <v-btn icon="mdi-notebook" color="background" elevation="4" class="bg-info mr-4"> </v-btn>
+                    <v-dialog v-model="theoryDialog" max-width="600">
+                        <template v-slot:activator="{ props: activatorProps }">
+                            <v-btn v-bind="activatorProps" icon="mdi-notebook" color="background" elevation="4"
+                                class="bg-info mr-4"> </v-btn>
+                        </template>
+
+                        <Theory :dialog="theoryDialog" @update:dialog="theoryDialog = $event" :cod_tema="props.nombre">
+                        </Theory>
+                    </v-dialog>
+
 
                     <v-menu location="bottom left" transition="fade-transition">
                         <template v-slot:activator="{ props }">
@@ -36,10 +52,27 @@ const props = defineProps({
 
                         <v-list>
                             <v-list-item>
-                                <TextBtn>New subject</TextBtn>
+                                <v-dialog v-model="dialog1" max-width="600">
+                                    <template v-slot:activator="{ props: activatorProps }">
+                                        <TextBtn v-bind="activatorProps">New subject</TextBtn>
+                                    </template>
+
+                                    <CreateSubject :dialog="dialog1" @update:dialog="dialog1 = $event"
+                                        :cod_nivel="props.cod_nivel">
+                                    </CreateSubject>
+                                </v-dialog>
                             </v-list-item>
                             <v-list-item>
-                                <TextBtn>New lesson</TextBtn>
+                                <v-dialog v-model="dialog2" max-width="600">
+                                    <template v-slot:activator="{ props: activatorProps }">
+                                        <TextBtn v-bind="activatorProps">New lesson</TextBtn>
+                                    </template>
+
+                                    <CreateLesson :dialog="dialog2" @update:dialog="dialog2 = $event"
+                                        :cod_tema="props.title">
+                                    </CreateLesson>
+                                </v-dialog>
+
                             </v-list-item>
                         </v-list>
                     </v-menu>

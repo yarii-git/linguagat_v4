@@ -4,7 +4,6 @@ import ToolbarComponent from '@/components/ToolbarComponent.vue';
 
 <template>
     <ToolbarComponent />
-
     <v-main>
         <slot></slot>
     </v-main>

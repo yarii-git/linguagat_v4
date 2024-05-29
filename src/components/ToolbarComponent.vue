@@ -4,7 +4,7 @@
   <v-toolbar color="primary">
     <v-toolbar-title>
       <v-img max-height="100" max-width="200" aspect-ratio="16/9"
-        src="http://linguagat.inscastellet.cat/assets/capcelera1.png"></v-img>
+        src="http://linguagat.inscastellet.cat/assets/logo.png"></v-img>
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -17,4 +17,5 @@
       <v-icon>mdi-dots-vertical</v-icon>
     </v-btn>
   </v-toolbar>
+
 </template>

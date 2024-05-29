@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
-import { useLessonsStore } from '../stores/lessons'
-const lessonsStore = useLessonsStore()
+import { useSubjectsStore } from '../stores/subjects'
+const subjectsStore = useSubjectsStore()
 
 const props = defineProps({
-    cod_tema: {
+    cod_nivel: {
         type: Number
     }
 })
@@ -12,7 +12,7 @@ const props = defineProps({
 // Define emit
 const emit = defineEmits(['update:dialog']);
 
-// Define a ref for the lesson name
+// Define a ref for the subject name
 const nombre = ref('');
 
 // Function to close dialog
@@ -20,10 +20,10 @@ const closeDialog = () => {
     emit('update:dialog', false);
 };
 
-const createLesson = () => {
-    const res = lessonsStore.createLesson(props.cod_tema, nombre.value)
+const createSubject = () => {
+    const res = lessonsStore.createSubject(props.cod_nivel, nombre.value)
     if (res !== true) {
-        console.log("Error inserting lesson")
+        console.log("Error inserting subject")
     }
 
     closeDialog()
@@ -32,7 +32,7 @@ const createLesson = () => {
 </script>
 
 <template>
-    <v-card prepend-icon="mdi-paw" title="New lesson">
+    <v-card prepend-icon="mdi-text-long" title="New subject">
         <v-card-text>
             <v-row dense>
                 <v-col cols="12" md="4" sm="6">
@@ -50,7 +50,7 @@ const createLesson = () => {
 
             <v-btn text="Close" variant="plain" @click="closeDialog"></v-btn>
 
-            <v-btn color="primary" text="Save" variant="tonal" @click="createLesson"></v-btn>
+            <v-btn color="primary" text="Save" variant="tonal" @click="createSubject"></v-btn>
         </v-card-actions>
     </v-card>
 </template>

@@ -1,11 +1,16 @@
 <script setup>
 import Gif from '@/components/Gif.vue'
 import Bubble from '@/components/Bubble.vue'
-import { ref } from 'vue';
+import { ref, watch, defineEmits } from 'vue';
 
+const emit = defineEmits(['answer-checked']);
 const props = defineProps({
     exercise: {
         type: Object
+    },
+    checkClicked: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -26,6 +31,29 @@ const removeAnswer = (answer) => {
         selectedAnswers.value.splice(index, 1);
     }
 };
+
+// Función para verificar si la respuesta es correcta
+const checkAnswer = () => {
+    const correctAnswers = props.exercise.respuesta;
+    console.log(correctAnswers)
+
+    const isCorrect = selectedAnswers.value == correctAnswers
+
+    // .every(answer => correctAnswers == answer) &&
+    //     correctAnswers.length === selectedAnswers.value.length;
+
+    // Emitir evento al padre con el resultado de la verificación
+    emit('answer-checked', isCorrect);
+};
+
+// Observar cambios en la propiedad checkClicked del padre
+watch(() => props.checkClicked, (newValue) => {
+    if (newValue) {
+        checkAnswer();
+    }
+});
+
+
 </script>
 
 <template>
@@ -50,7 +78,7 @@ const removeAnswer = (answer) => {
             <v-divider :thickness="3" color="info"></v-divider>
         </v-card-text>
 
-        <v-card-actions class="d-flex flex-wrap justify-center ">
+        <v-card-actions class="d-flex flex-wrap justify-center">
             <template v-for="(button, i) in exercise.botones" :key="i">
                 <TextBtn @click="selectAnswer(button)" class="mb-2">{{ button }}</TextBtn>
             </template>
