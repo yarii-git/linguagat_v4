@@ -14,39 +14,36 @@ const props = defineProps({
     }
 });
 
-// Array reactivo para almacenar las respuestas seleccionadas
-const selectedAnswers = ref([]);
+// Reactive array to store selected responses
+const selectedAnswer = ref([]);
 
-// Función para seleccionar una respuesta
+// Function to select an answer
 const selectAnswer = (button) => {
-    if (!selectedAnswers.value.includes(button)) {
-        selectedAnswers.value.push(button);
+    if (!selectedAnswer.value.includes(button)) {
+        selectedAnswer.value.push(button);
     }
 };
 
-// Función para eliminar una respuesta
+// Function to delete an answer
 const removeAnswer = (answer) => {
-    const index = selectedAnswers.value.indexOf(answer);
+    const index = selectedAnswer.value.indexOf(answer);
     if (index !== -1) {
-        selectedAnswers.value.splice(index, 1);
+        selectedAnswer.value.splice(index, 1);
     }
 };
 
-// Función para verificar si la respuesta es correcta
+// Function to check if the answer is correct
 const checkAnswer = () => {
-    const correctAnswers = props.exercise.respuesta;
-    console.log(correctAnswers)
+    const correctAnswer = props.exercise.respuesta;
 
-    const isCorrect = selectedAnswers.value == correctAnswers
+    const isCorrect = selectedAnswer.value.join(' ') == correctAnswer
+    selectedAnswer.value = [];
 
-    // .every(answer => correctAnswers == answer) &&
-    //     correctAnswers.length === selectedAnswers.value.length;
-
-    // Emitir evento al padre con el resultado de la verificación
+    // Issue event to parent with verification result
     emit('answer-checked', isCorrect);
 };
 
-// Observar cambios en la propiedad checkClicked del padre
+// Observe changes to the checkClicked property of the parent
 watch(() => props.checkClicked, (newValue) => {
     if (newValue) {
         checkAnswer();
@@ -70,7 +67,7 @@ watch(() => props.checkClicked, (newValue) => {
         <v-card-text class="d-flex flex-column justify-space-around">
             <v-divider :thickness="3" color="info"></v-divider>
             <div class="d-flex flex-wrap">
-                <TextBtn v-for="(answer, index) in selectedAnswers" :key="index" class="ma-2"
+                <TextBtn v-for="(answer, index) in selectedAnswer" :key="index" class="ma-2"
                     @click="removeAnswer(answer)">
                     {{ answer }}
                 </TextBtn>

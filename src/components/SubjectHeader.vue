@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useAuthStore } from '@/stores/auth';
 import CreateLesson from '@/components/CreateLesson.vue';
 import CreateSubject from '@/components/CreateSubject.vue';
 import Theory from '@/components/Theory.vue';
@@ -15,13 +16,21 @@ const props = defineProps({
     cod_nivel: {
         type: Number,
     }
-})
+});
+
 const theoryDialog = ref(false);
 const dialog1 = ref(false);
 const dialog2 = ref(false);
 
+// Obtén el store de autenticación
+const authStore = useAuthStore();
 
+// Computa si el usuario tiene los roles necesarios
+const hasRequiredRoles = computed(() => {
+    return authStore.role == 1 || authStore.role == 2;
+});
 </script>
+
 <template>
     <v-card variant="flat" color="secondary" class="ma-3 mb-0" rounded="t-lg">
         <v-row align="center">
@@ -43,8 +52,7 @@ const dialog2 = ref(false);
                         </Theory>
                     </v-dialog>
 
-
-                    <v-menu location="bottom left" transition="fade-transition">
+                    <v-menu v-if="hasRequiredRoles" location="bottom left" transition="fade-transition">
                         <template v-slot:activator="{ props }">
                             <v-btn v-bind="props" icon="mdi-plus" color="background" elevation="4" class="bg-info mr-4">
                             </v-btn>
@@ -72,7 +80,6 @@ const dialog2 = ref(false);
                                         :cod_tema="props.title">
                                     </CreateLesson>
                                 </v-dialog>
-
                             </v-list-item>
                         </v-list>
                     </v-menu>
@@ -81,4 +88,5 @@ const dialog2 = ref(false);
         </v-row>
     </v-card>
 </template>
+
 <style scoped></style>

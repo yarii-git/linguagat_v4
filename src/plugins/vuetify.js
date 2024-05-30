@@ -23,7 +23,7 @@ const lightTheme = {
     surface: '#FFF8F8',
     primary: '#FAB1DA',
     secondary: '#DEBECD',
-    secondaryLight: '#FFF8F8',
+    secondaryLight: '#FFECF3',
     error: '#93000A',
     info: '#4B2713',
     success: '#A2D398',

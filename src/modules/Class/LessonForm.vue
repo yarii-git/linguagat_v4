@@ -17,15 +17,19 @@ const currentExerciseIndex = ref(0);
 const progress = ref(0);
 const exercisesStore = useExercisesStore();
 const checkClicked = ref(false);
-const isAnswerCorrect = ref(null); // Almacena si la respuesta es correcta o incorrecta
+const isAnswerCorrect = ref(null);
+const showBottomSheet = ref(false);
+const bottomSheetColor = ref('');
+const bottomSheetMessage = ref('');
 
 const loadExercises = async () => {
+
     const success = await exercisesStore.obtainExercises(props.cod_leccion);
     if (success) {
         exercises.value = exercisesStore.exercises;
         updateProgress();
     } else {
-        console.log("Error al cargar los ejercicios");
+        console.log("Error loading exercises");
     }
 };
 
@@ -42,15 +46,26 @@ const checkAnswers = () => {
     checkClicked.value = true;
 };
 
-// Función para manejar la respuesta del ejercicio
+// Function to manage exercise response
 const handleAnswer = (result) => {
-
-    isAnswerCorrect.value = result; // Actualizar el estado de la respuesta
-    console.log(isAnswerCorrect.value)
+    isAnswerCorrect.value = result;
 
     if (isAnswerCorrect.value) {
-        console.log("Correcto!")
+        bottomSheetColor.value = 'success';
+        bottomSheetMessage.value = 'Correct!';
+    } else {
+        bottomSheetColor.value = 'error';
+        bottomSheetMessage.value = 'Error!';
     }
+    showBottomSheet.value = true;
+};
+
+const nextExercise = () => {
+    currentExerciseIndex.value++;
+    checkClicked.value = false;
+    isAnswerCorrect.value = null;
+    showBottomSheet.value = false;
+    updateProgress();
 };
 
 onMounted(() => {
@@ -59,7 +74,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <v-container class="border bg-surface h-100">
+    <v-container class="bg-surface h-100 d-flex justify-center" max-width="600">
         <v-row class="h-100">
             <v-col cols="12">
                 <v-progress-linear v-model="progress" color="primary" height="10" rounded="xl"></v-progress-linear>
@@ -78,7 +93,6 @@ onMounted(() => {
                         <ExerciseCard3 :exercise="exercises[currentExerciseIndex]" :checkClicked="checkClicked"
                             @answer-checked="handleAnswer"></ExerciseCard3>
                     </template>
-                    <!-- Agrega las otras plantillas para los otros tipos de ejercicios -->
                 </template>
             </v-col>
 
@@ -88,6 +102,13 @@ onMounted(() => {
                 <v-btn @click="checkAnswers" block size="large">Check</v-btn>
             </v-col>
         </v-row>
+
+        <v-bottom-sheet v-model="showBottomSheet">
+            <v-sheet :color="bottomSheetColor" class="pa-9">
+                <div class="text-h5 text-center pb-4">{{ bottomSheetMessage }}</div>
+                <v-btn color="white" @click="nextExercise" block size="large">Next</v-btn>
+            </v-sheet>
+        </v-bottom-sheet>
     </v-container>
 </template>
 
