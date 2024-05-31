@@ -16,14 +16,18 @@ const loginUser = async () => {
         const userRole = auth.role;
         console.log(userRole);
 
+        console.log(userRole)
         switch (userRole) {
+            case 1:
+                router.push({ name: 'home' });
+                break;
+            case 2:
+                router.push({ name: 'home' });
+                break;
             case 3:
                 router.push({ name: 'home' });
                 break;
-            case 1:
-                console.log("ruta 1");
-                router.push({ name: 'home' });
-                break;
+
             default:
                 router.push({ name: 'login' });
                 break;
